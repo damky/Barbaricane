@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5nnqlr0pjlii"]
+
+[ext_resource type="Texture2D" uid="uid://cx03n2e0hq1h3" path="res://Assets/SpriteImages/AxeImg.png" id="1_olmkq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sds05"]
+radius = 23.0
+height = 268.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fj6ic"]
+radius = 17.0
+
+[node name="Axe" type="Node2D"]
+rotation = 0.987856
+scale = Vector2(0.2, 0.2)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("../RigidBody2D")
+node_b = NodePath("../AnchorPoint")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0, -120)
+shape = SubResource("CapsuleShape2D_sds05")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(-120, -255)
+texture = ExtResource("1_olmkq")
+centered = false
+
+[node name="AnchorPoint" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnchorPoint"]
+shape = SubResource("CircleShape2D_fj6ic")
